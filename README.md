@@ -3,6 +3,7 @@
 
 ### refs
 [https://www.w3school.com.cn/sql/sql_insert.asp](https://www.w3school.com.cn/sql/sql_insert.asp)
+[https://juejin.im/post/5c7e524af265da2d914db18f#heading-10](https://juejin.im/post/5c7e524af265da2d914db18f#heading-10)
 
 ### Feature
 * lazy execute
@@ -10,7 +11,7 @@
 
 ### Grammar
 
-#### init
+#### Table
 ```javascript
 import {Table} from 'js-sql'
 
@@ -29,121 +30,69 @@ Table(data)
 Table(data, 'name', 'age')
 ```
 
-#### select
-```javascript
-data.select();                 // select * from table
-data.select('name', 'age');    // select name,age from table
-
-// with distinct
-import {SELECT} from 'js-sql'
-data.select('name', 'age', SELECT.DISTINCT);   // select DISTINCT name, age from table
-
-```
-
-#### where
-
-`age>10` or `age > 10` will be valid
-
-```javascript
-
-/**
-* equal sql:
-* select name, age from table
-* where name LIKE 'john' AND age>10
-*/
-data
-.select('name', 'age')
-.where('name LIKE john', 'age>10')
+#### Data Operator
+* select
+* update
+* insert
+* delete
 
 
-/**
-* equal sql:
-* select name, age from table
-* where name LIKE 'john' AND OR > 10
-*/
-import {WHERE} from 'js-sql';
+#### Data filter
+* where
+  
+  `=  >  <  !=  >=  <=`
+* where IN | where BETWEEN
 
-data
-.select('name', 'age')
-.where('name LIKE john', WHERE.OR, 'age>10')
-
-
-/**
-* custom where condition
-*/
-data
-.select('name', 'age')
-.where(function(row){return row.age> 10})
-
-
-/**
-* multiple where
-* equal sql:
-* select name, age from table
-* where (name LIKE 'john' AND age>10)
-*/
-data
-.select('name', 'age')
-.where('name LIKE john')
-.where('age>10')
-
-```
-
-##### operator can be:
-* =
-* !=
-* \>
-* <
-* \>=
-* <=
-* BETWEEN
+  `BETWEEN  IN`
+* AND | OR | NOT
 * LIKE
 
+  `%  _`
+  
+#### Data PreHandle
+* text
+
+  `LFET RIGHT`
+  
+  `LOWER UPPER`
+  
+  `LTRIM RTRIM`
+  
+  `LENGTH`
+  
+  `SOUNDEX`
+  
+* date[TODO]
+* math[TODO]
+* sum
+
+  `AVG COUNT MAX MIN SUM`
+  
+  
+#### Data sort and Data group
+* order by
+
+  `ASC DESC`
+* group by
+* HAVING
 
 
-#### order by
-```javascript
-/**
-* equal sql:
-* select name, age from table
-* where (name LIKE 'john' AND age>10)
-* order by name DESC, age ASC
-*/
-data
-.select('name', 'age')
-.where('name LIKE john', 'age>10')
-.orderBy('name desc', 'age asc')
 
 
-/**
-* equal sql:
-* select name, age from table
-* where (name LIKE 'john' AND age>10)
-* order by name DESC, age ASC
-*/
-import {ORDERBY} from 'js-sql';
-
-data
-.select('name', 'age')
-.where('name LIKE john', 'age>10')
-.orderBy('name', ORDERBY.DESC, 'age', ORDERBY.ASC)
-
-```
+#### 子查询
 
 
-#### insert
-```javascript
-/**
-* equal sql:
-* insert into table (name, age) values ('tony', 10)
-*/
-import {Table} from 'js-sql'
-const data = Table(datasource, 'name', 'age')
-
-data
-.insert('tony', '10')
-
-```
-
-
+#### Data join
+* join
+ 
+ `NATURAL JOIN`
+ 
+ `INNER JOIN`
+ 
+ `LEFT JOIN`
+ 
+ `RIGHT JOIN`
+ 
+ `OUTER JOIN`
+ 
 
